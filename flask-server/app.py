@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 
 from decorators.auth_decorators import requires_authorization
 from services.auth_service import AuthService
+from services.db_service import DBService
 
 app = Flask(__name__)
 
@@ -49,4 +50,7 @@ def get_form(formId):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    dbService = DBService()
+    dbService.create_table()
+    dbService.add_user("Jane Doe", "jdoe@email.com")
+    # app.run(debug=True)
