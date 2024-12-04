@@ -1,8 +1,6 @@
 from sqlalchemy import Column, Integer, Sequence, String
 from sqlalchemy.ext.declarative import declarative_base
-
-# ORM base class
-Base = declarative_base()
+from models.base import Base
 
 
 class UserModel(Base):
