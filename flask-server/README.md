@@ -7,4 +7,4 @@ docker pull dpage/pgadmin4
 docker run -d -p 5050:80 --name pgadmin -e PGADMIN_DEFAULT_EMAIL=admin@email.com -e PGADMIN_DEFAULT_PASSWORD=password dpage/pgadmin4
 http://localhost:5050
 
-> to connect to dockerized db, use host.docker.internal for hostname
+> to connect to dockerized db, use host.docker.internal for hostname instead of localhost

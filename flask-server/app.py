@@ -2,12 +2,6 @@ from flask import Flask, jsonify, request
 import jsonpickle
 
 from decorators.auth_decorators import requires_authorization
-from models.form_json_model import (
-    AttachedDocumentModel,
-    DocumentType,
-    FormAddressModel,
-    FormJsonModel,
-)
 from services.auth_service import AuthService
 from services.db_service import DBService
 
@@ -59,23 +53,25 @@ def get_form(formId):
 if __name__ == "__main__":
     dbService = DBService()
     dbService.create_table()
-    dbService.add_user("Jane Doe", "jdoe@email.com")
+    dbService.add_person()
 
-    form_data: FormJsonModel = FormJsonModel(
-        name="sheedy",
-        email="sheedy@email.com",
-        address=FormAddressModel(address1="123 Main St", address2="Apt 101"),
-    )
+    # dbService.add_user("Jane Doe", "jdoe@email.com")
 
-    new_document = AttachedDocumentModel(
-        document_url="s3url", document_name="doc1", document_type=DocumentType.PASSPORT
-    )
+    # form_data: FormJsonModel = FormJsonModel(
+    #     name="sheedy",
+    #     email="sheedy@email.com",
+    #     address=FormAddressModel(address1="123 Main St", address2="Apt 101"),
+    # )
 
-    form_data.add_document(new_document)
-    # docId = new_document.id
-    # form_data.remove_document(docId)
+    # new_document = AttachedDocumentModel(
+    #     document_url="s3url", document_name="doc1", document_type=DocumentType.PASSPORT
+    # )
 
-    dbService.add_form(user_id=1, form_body=jsonpickle.dumps(form_data))
-    formObj = dbService.get_form(2)
-    print(formObj)
+    # form_data.add_document(new_document)
+    # # docId = new_document.id
+    # # form_data.remove_document(docId)
+
+    # dbService.add_form(user_id=1, form_body=jsonpickle.dumps(form_data))
+    # formObj = dbService.get_form(2)
+    # print(formObj)
     # app.run(debug=True)
